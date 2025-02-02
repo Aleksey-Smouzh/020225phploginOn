@@ -8,7 +8,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30%;    
+    margin-top: 30%;
+    
 }
 p{
     padding-bottom: 20px;
@@ -23,5 +24,12 @@ input{
     
 }
 .btn{
+    cursor: pointer;
     background-color: chartreuse;
+    transition:  all 0.3s ease;
+    }
+.btn:hover{
+    background-color: rgb(233, 100, 100);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
 }

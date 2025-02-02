@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="style.css"> -->
-    
+
     <title>LOGIN DB</title>
 </head>
 <body>
@@ -77,8 +77,18 @@ function logowanie() {
     </script>
 START;
     } else {
-  $id_pracownika=get_hash_parametr("id_pracownika");
-        echo "$id_pracownika";
+        $id_pracownika = get_hash_parametr("id_pracownika");
+        if ($id_pracownika != "") {
+            $baza   = mysqli_connect($baza_serwer, $baza_uzytkownik, $baza_haslo, $baza_nazwa);
+            $sql    = "select * from pracownicy,imiona where pracownicy.id='$id_pracownika' and imiona.id='$id_pracownika'";
+            $wynik  = mysqli_query($baza, $sql);
+            $wiersz = mysqli_fetch_array($wynik);
+            echo "{$wiersz['NAZWISKO']} {$wiersz['IMIE']}";
+            mysqli_close($baza);
+        } else {
+            header("location: index.php?login=&haslo=");
+        }
+
     }
 ?>
 

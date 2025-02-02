@@ -16,6 +16,12 @@
     // Вызываем функцию get_haslo_login(), которая,  предназначена для получения значений логина и пароля
     // Она может быть определена ранее в коде или в подключенном файле она присваивает значения переменным $login и $haslo.
     get_haslo_login();
+    $login = login($login);
+    $haslo = haslo($haslo);
+// echo "haslo_hash=$haslo";
+// echo "login_hash=$login";
+// exit;
+
 
     // Создаем соединение с базой данных с помощью функции mysqli_connect().
     // Передаем параметры для подключения к базе данных: сервер, пользователь, пароль, название базы данных.
@@ -26,7 +32,7 @@
     // Создаем SQL-запрос для проверки, существует ли пользователь с заданным логином и паролем.
     // Запрос выбирает логин, пароль и id_pracownika из таблицы logowanie.
     // Примечание: это может быть уязвимостью SQL-инъекций, так как данные напрямую вставляются в запрос.
-    $sql = "select login,haslo,id_pracownika from logowanie where login='$login' and haslo='$haslo'";
+    $sql = "select login_hash,haslo,id_pracownika from logowanie where login_hash='$login' and haslo='$haslo'";
 
     // Выполняем SQL-запрос с помощью функции mysqli_query(), которая возвращает результат запроса.
     // Этот результат сохраняется в переменной $wynik.

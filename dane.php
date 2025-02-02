@@ -7,6 +7,16 @@ $baza_nazwa = "infprog21";
 $login ="";
 $haslo ="";
 
+function haslo($haslo)
+{
+    return md5(sha1($haslo)).sha1(md5($haslo));
+}
+
+function login($login)
+{
+    return sha1(md5($login)).md5(sha1($login));
+}
+
 
 function get_haslo_login()
 {

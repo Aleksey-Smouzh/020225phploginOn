@@ -15,6 +15,10 @@
 <!-- ____________________________________________________________________ -->
 <?php
 
+
+
+
+
 get_haslo_login();
 
 
@@ -37,6 +41,11 @@ if (($login=="") or ($haslo=="")){
 </p>
 </div>
 
+
+
+
+
+<script src="js/hash.js"></script>
 <script>
 
 // Функция, которая вызывается при нажатии кнопки "Zaloguj"
@@ -49,7 +58,7 @@ function logowanie() {
         // Получаем значение пароля из поля ввода с id="haslo"
 
         let login_ = document.getElementById('login').value;
-
+        haslo_=md5(haslo_)
         // Перенаправляем браузер на страницу "logowanie.php", передавая параметры логина и пароля через URL
         // Используется window.location.href для редиректа
 

@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#okno_logowania{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30%;    
+}
+p{
+    padding-bottom: 20px;
+    font-size: 40px;
+}
+input{
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 5px solid  chartreuse;
+    
+}
+.btn{
+    background-color: chartreuse;
+}

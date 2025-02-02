@@ -18,17 +18,16 @@
     get_haslo_login();
     $login = login($login);
     $haslo = haslo($haslo);
-// echo "haslo_hash=$haslo";
-// echo "login_hash=$login";
-// exit;
-
+    // echo "haslo_hash=$haslo";
+    // echo "login_hash=$login";
+    // exit;
 
     // Создаем соединение с базой данных с помощью функции mysqli_connect().
     // Передаем параметры для подключения к базе данных: сервер, пользователь, пароль, название базы данных.
     // Переменные $baza_serwer, $baza_uzytkownik, $baza_haslo, $baza_nazwa должны быть определены где-то в коде
     // или в подключаемом файле (например, в "dane.php").
-    $baza  = mysqli_connect($baza_serwer, $baza_uzytkownik, $baza_haslo, $baza_nazwa);
-    
+    $baza = mysqli_connect($baza_serwer, $baza_uzytkownik, $baza_haslo, $baza_nazwa);
+
     // Создаем SQL-запрос для проверки, существует ли пользователь с заданным логином и паролем.
     // Запрос выбирает логин, пароль и id_pracownika из таблицы logowanie.
     // Примечание: это может быть уязвимостью SQL-инъекций, так как данные напрямую вставляются в запрос.
@@ -44,26 +43,28 @@
         // Если логин и пароль совпадают, получаем id_pracownika из результата запроса
         // Мы используем mysqli_fetch_array() для извлечения данных из результата в виде массива.
         $id = mysqli_fetch_array($wynik)["id_pracownika"];
-        
+
         // Закрываем соединение с базой данных, так как запрос завершен.
         mysqli_close($baza);
-        
+
         // Выполняем редирект на страницу index.php с параметрами login и haslo, которые были переданы в запросе.
         // Это может быть полезно, например, для отслеживания информации о пользователе.
         // Примечание: передача пароля через URL не является безопасным, лучше использовать метод POST.
-        header("location:../index.php?login=$login&haslo=$haslo");
+        // header("location:../index.php?login=$login&haslo=$haslo");
+        // mysqli_close($baza);
+
+        header("location:../index.php?" . parametr('id_pracownika' . $id) . "=$id&" . parametr('login' . $login) . "=$login&" . parametr('haslo' . $haslo) . "=$haslo");
+
     } else {
         // Если логин и пароль не совпадают, закрываем соединение с базой данных.
         mysqli_close($baza);
-        
+
         // Выполняем редирект на страницу index.php, но без передачи логина и пароля.
         // Это может сигнализировать, что произошла ошибка при аутентификации.
         header("location:../index.php?login=&haslo=");
     }
+
 ?>
-
-
-
 
 </body>
 </html>

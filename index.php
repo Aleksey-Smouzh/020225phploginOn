@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    
     <title>LOGIN DB</title>
 </head>
 <body>
@@ -15,27 +17,28 @@
 <!-- ____________________________________________________________________ -->
 <?php
 
-   //$x = md5('test').sha1('test');
-//   echo sha1(md5($x)).md5(sha1($x));
+    //$x = md5('test').sha1('test');
+    //   echo sha1(md5($x)).md5(sha1($x));
     //echo login($x);
-//exit;
+    //exit;
     get_haslo_login();
 
     if (($login == "") or ($haslo == "")) {
 
         echo <<<START
+        <link rel="stylesheet" href="style.css">
 <div class="" id="okno_logowania">
     <p class="p_login">
 
-    <label for="login">podai login:</label>
-    <input type="login" id="login" name="login" placeholder="podaj login"></input></p>
+    <label for="login">Podaj login:</label>
+    <input type="login" id="login" name="login" placeholder="  podaj login"></input></p>
 
 <p class="p_zaloguj">
-<label for="haslo">podaj haslo</label>
-<input type="password" id="haslo" name="haslo" placeholder="wpisz haslo">
+<label for="haslo">Podaj haslo:</label>
+<input type="password" id="haslo" name="haslo" placeholder="  wpisz haslo">
 </p>
 <p class="p_zaloguj">
-    <input type="button" value="Zaloguj" id="bt_zaloguj" onclick="logowanie()">
+    <input class="btn" type="button" value="Zaloguj" id="bt_zaloguj" onclick="logowanie()">
 </p>
 </div>
 
@@ -74,9 +77,9 @@ function logowanie() {
     </script>
 START;
     } else {
-        echo " zalogowane";
+  $id_pracownika=get_hash_parametr("id_pracownika");
+        echo "$id_pracownika";
     }
-
 ?>
 
 </body>

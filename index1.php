@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN DB</title>
 </head>
 <body>
@@ -66,11 +66,12 @@ START;
             die("Błąd połączenia z bazą danych: " . mysqli_connect_error());
         }
 
-        // Формируем SQL-запрос для получения имени, фамилии и уровня доступа сотрудника
-        $sql = "SELECT pracownicy.NAZWISKO, imiona.IMIE, logowanie.PRAWA 
+        // Формируем SQL-запрос для получения имени, фамилии и уровня доступа сотрудника из таблицы prawa
+        $sql = "SELECT pracownicy.NAZWISKO, imiona.IMIE, prawa.PRAWA 
                 FROM pracownicy 
                 INNER JOIN imiona ON pracownicy.id = imiona.id 
                 INNER JOIN logowanie ON pracownicy.id = logowanie.id_pracownika 
+                INNER JOIN prawa ON logowanie.PRAWA = prawa.ID
                 WHERE pracownicy.id = '$id_pracownika'";
 
         // Выполняем SQL-запрос
@@ -99,4 +100,3 @@ START;
 
 </body>
 </html>
-
